@@ -10,60 +10,51 @@
 <style>
 :root{
   --bg:#ffffff;--bg-2:#f5f5f7;--ink:#1d1d1f;--ink-2:#6e6e73;--ink-3:#86868b;
-  --line:#d2d2d7;--btn:#1d1d1f;--btn-ink:#ffffff;--nav:rgba(255,255,255,.85);
-  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --line:#d2d2d7;--btn:#1d1d1f;--btn-ink:#ffffff;--blue:#0071e3;--blue-2:#0077ed;--nav:rgba(255,255,255,.85);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 html{color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.4;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1024px;margin:0 auto;padding-inline:22px}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-.nav-in{max-width:1024px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;gap:36px;font-size:12px;color:var(--ink-2)}
-.nav-in .logo{color:var(--ink);display:flex;margin-right:auto}
-.nav-in .logo svg{width:20px;height:20px}
-.nav-in .links{display:flex;gap:36px;margin-right:auto}
-.nav-in .links a:first-child{color:var(--ink);font-weight:500}
-.nav-in .icons{display:flex;gap:28px;color:var(--ink)}
+.nav-in{max-width:1024px;margin:0 auto;padding:0 22px;height:48px;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:12px;color:var(--ink)}
+.nav-in .logo{display:flex;color:var(--ink)}
+.nav-in .logo svg{width:18px;height:18px}
+.nav-in .links{display:flex;gap:30px;flex:1;justify-content:space-between;max-width:760px;margin-inline:30px;overflow-x:auto;scrollbar-width:none}
+.nav-in .links::-webkit-scrollbar{display:none}
+.nav-in .links a{white-space:nowrap;opacity:.85}
+.nav-in .links a:hover{opacity:1}
+.nav-in .icons{display:flex;gap:26px}
 .nav-in .icons svg{width:16px;height:16px}
-@media(max-width:640px){.nav-in{gap:18px}.nav-in .links{gap:18px}}
+@media(max-width:640px){.nav-in .links{gap:18px;margin-inline:12px}.nav-in .icons{gap:16px}}
 
-/* hero */
-.wrap{max-width:1024px;margin:0 auto;padding-inline:22px}
-.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px;padding-block:44px 30px;position:relative}
-.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-2);margin:0 0 18px}
-.hero h1{font-size:clamp(46px,7vw,76px);line-height:1.02;letter-spacing:-.03em;font-weight:600;margin:0}
-.hero .sub{font-size:clamp(20px,2.4vw,26px);color:var(--ink-2);margin:22px 0 32px}
-.btn{display:inline-flex;align-items:center;gap:6px;background:var(--btn);color:var(--btn-ink);border-radius:999px;padding:12px 26px;font-size:17px;transition:transform .2s,opacity .2s}
-.btn:hover{transform:translateY(-1px);opacity:.92}
-.hero .art{position:relative}
-.hero .art img{width:100%;max-width:440px;max-height:520px;object-fit:contain;margin-inline:auto;animation:float 6s ease-in-out infinite}
-.hero .tag{position:absolute;right:0;top:24px;font-size:11px;letter-spacing:.14em;color:var(--ink-2);line-height:1.6;text-align:right}
-.hero .tag b{font-weight:600;letter-spacing:.14em}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@media(prefers-reduced-motion:reduce){.hero .art img{animation:none}}
-@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:left}.hero .tag{position:static;margin-top:14px}}
-
-/* lineup */
-.lineup{text-align:center;padding-block:40px 60px}
-.lineup .eyebrow{margin-bottom:34px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.card{display:flex;flex-direction:column;align-items:center;gap:8px}
-.card .cmark{width:22px;height:22px;margin-bottom:2px}
-.card h3{font-size:24px;font-weight:600;letter-spacing:-.01em;margin:0}
-.card .tag{font-size:15px;color:var(--ink-2);margin:0}
-.card .pic{height:240px;display:flex;align-items:center;justify-content:center;width:100%;margin-block:10px}
-.card .pic img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;transition:transform .35s}
-.card:hover .pic img{transform:scale(1.04)}
-.card .price{font-size:22px;font-weight:600;margin:6px 0 4px;font-variant-numeric:tabular-nums}
-.pill{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:8px 22px;font-size:14px;color:var(--ink);transition:background .2s}
-.pill:hover{background:var(--bg-2)}
-@media(max-width:760px){.grid{grid-template-columns:1fr;gap:44px}.card .pic{height:200px}}
+/* product tiles */
+.tile{text-align:center;padding-block:56px 0;position:relative}
+.tile+.tile{border-top:1px solid var(--bg-2)}
+.tile .name{font-size:22px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+.tile .mark{width:30px;height:30px;margin:0 auto 10px;display:block}
+.tile h2{font-size:clamp(48px,8.5vw,96px);font-weight:700;letter-spacing:-.035em;line-height:1;margin:0 0 26px;text-wrap:balance}
+.tile .dates{font-size:clamp(16px,2vw,21px);line-height:1.5;margin:0 0 30px;color:var(--ink)}
+.tile .stage{position:relative;max-width:1180px;margin:0 auto;padding-inline:22px}
+.tile .stage img{margin:0 auto;width:100%}
+.tile.air .stage img{max-width:560px;-webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 100%);mask-image:linear-gradient(to right,transparent,#000 14%,#000 100%)}
+.tile.promax .stage img{max-width:520px}
+.tile.duo .stage img{max-width:900px}
+.tile .buy{position:relative;z-index:1;display:inline-flex;align-items:center;gap:22px;background:var(--bg-2);border-radius:999px;padding:8px 8px 8px 30px;margin:-56px auto 0;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.tile .buy .from{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tile .buy .cta{background:var(--blue);color:#fff;border-radius:999px;padding:16px 32px;font-size:21px;line-height:1;transition:background .2s}
+.tile .buy .cta:hover{background:var(--blue-2)}
+.tile .sub{font-size:13px;color:var(--ink-2);margin:14px 0 0}
+.tile .after{padding-bottom:72px}
+@media(max-width:640px){.tile .buy{gap:12px;padding:6px 6px 6px 18px;margin-top:-30px}.tile .buy .from{font-size:15px}.tile .buy .cta{padding:12px 20px;font-size:16px}}
 
 /* values */
-.values{background:var(--bg-2);padding-block:52px}
+.values{background:var(--bg-2);padding-block:56px}
 .values .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
 .values svg{width:34px;height:34px;stroke:var(--ink);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 12px}
 .values h4{margin:0 0 4px;font-size:17px;font-weight:600}
@@ -71,8 +62,8 @@ img{max-width:100%;height:auto;display:block}
 @media(max-width:760px){.values .wrap{grid-template-columns:1fr 1fr;gap:36px 16px}}
 
 /* closing */
-.closing{text-align:center;padding-top:52px;overflow:hidden}
-.closing .eyebrow{margin-bottom:22px}
+.closing{text-align:center;padding-top:60px;overflow:hidden}
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink-2);margin:0 0 22px}
 .closing h2{font-size:clamp(40px,6vw,66px);letter-spacing:-.03em;font-weight:600;margin:0 0 18px;line-height:1.05;text-wrap:balance}
 .closing .mark{width:26px;height:26px;margin:0 auto 12px;display:block}
 .closing p{margin:0 0 26px;font-size:15px;color:var(--ink-2)}
@@ -84,13 +75,15 @@ footer{background:var(--bg-2);padding-block:22px}
 footer .wrap{font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="paw" viewBox="0 0 24 24"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></symbol>
+</svg>
+
 <header class="nav">
   <div class="nav-in">
-    <a class="logo" href="#" aria-label="Ciba home">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></svg>
-    </a>
+    <a class="logo" href="#" aria-label="Ciba home"><svg fill="currentColor"><use href="#paw"/></svg></a>
     <nav class="links">
-      <a href="#">Ciba</a><a href="#lineup">Products</a><a href="#values">CIBA Coin</a><a href="#">Support</a>
+      <a href="#">Store</a><a href="#air">Ciba Air</a><a href="#promax">Ciba Pro Max</a><a href="#duo">Ciba Duo</a><a href="#">Treats</a><a href="#">Toys</a><a href="#">Walks</a><a href="#values">CIBA Coin</a><a href="#">Accessories</a><a href="#">Support</a>
     </nav>
     <div class="icons">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.5-4.5"/></svg>
@@ -99,44 +92,34 @@ footer .wrap{font-size:12px;color:var(--ink-3);display:flex;justify-content:spac
   </div>
 </header>
 
-<section class="wrap hero">
-  <div>
-    <p class="eyebrow">A new friend for a brighter day</p>
-    <h1>Ciba.<br>Beyond<br>Companionship.</h1>
-    <p class="sub">Pure joy. Infinite possibilities.</p>
-    <a class="btn" href="#lineup">Explore the lineup <span aria-hidden="true">›</span></a>
-  </div>
-  <div class="art">
-    <img src="img/hero.jpg" alt="Ciba Air curled into a fluffy ball" width="862" height="886">
-    <p class="tag"><b>Ciba Air</b><br>Light. Always with you.</p>
-  </div>
+<section class="tile duo" id="duo">
+  <svg class="mark" fill="currentColor"><use href="#paw"/></svg>
+  <p class="name">Ciba Duo</p>
+  <h2>Hello, hello.</h2>
+  <p class="dates">Pre-order starting at 8pm SGT on 16 October<br>Available starting 23 October</p>
+  <div class="stage"><img src="img/duo.jpg" alt="Two Cibas lying side by side, tails touching" width="1680" height="710"></div>
+  <div class="buy"><span class="from">From 88,999 CIBA Coin</span><a class="cta" href="#">View pricing</a></div>
+  <p class="sub after">Better together.</p>
 </section>
 
-<section class="wrap lineup" id="lineup">
-  <p class="eyebrow">Three ways to a brighter day</p>
-  <div class="grid">
-    <article class="card">
-      <svg class="cmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></svg>
-      <h3>Ciba Air</h3><p class="tag">Light. Always with you.</p>
-      <div class="pic"><img src="img/air.jpg" alt="Ciba Air, curled up" width="862" height="886"></div>
-      <p class="price">8,999 CIBA Coin</p>
-      <a class="pill" href="#">Learn more <span aria-hidden="true">›</span></a>
-    </article>
-    <article class="card">
-      <svg class="cmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></svg>
-      <h3>Ciba Pro Max</h3><p class="tag">More to love. In every way.</p>
-      <div class="pic"><img src="img/promax.jpg" alt="Ciba Pro Max, looking over its shoulder" width="780" height="790"></div>
-      <p class="price">18,999 CIBA Coin</p>
-      <a class="pill" href="#">Learn more <span aria-hidden="true">›</span></a>
-    </article>
-    <article class="card">
-      <svg class="cmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></svg>
-      <h3>Ciba Duo</h3><p class="tag">Better together.</p>
-      <div class="pic"><img src="img/duo.jpg" alt="Two Cibas lying side by side" width="1680" height="710"></div>
-      <p class="price">88,999 CIBA Coin</p>
-      <a class="pill" href="#">Learn more <span aria-hidden="true">›</span></a>
-    </article>
-  </div>
+<section class="tile promax" id="promax">
+  <svg class="mark" fill="currentColor"><use href="#paw"/></svg>
+  <p class="name">Ciba Pro Max</p>
+  <h2>More, more.</h2>
+  <p class="dates">Pre-order starting at 8pm SGT on 16 October<br>Available starting 23 October</p>
+  <div class="stage"><img src="img/promax.jpg" alt="Ciba Pro Max looking over its shoulder" width="768" height="790"></div>
+  <div class="buy"><span class="from">From 18,999 CIBA Coin</span><a class="cta" href="#">View pricing</a></div>
+  <p class="sub after">More to love. In every way.</p>
+</section>
+
+<section class="tile air" id="air">
+  <svg class="mark" fill="currentColor"><use href="#paw"/></svg>
+  <p class="name">Ciba Air</p>
+  <h2>Light, light.</h2>
+  <p class="dates">Pre-order starting at 8pm SGT on 16 October<br>Available starting 23 October</p>
+  <div class="stage"><img src="img/air.jpg" alt="Ciba Air curled into a fluffy ball" width="862" height="886"></div>
+  <div class="buy"><span class="from">From 8,999 CIBA Coin</span><a class="cta" href="#">View pricing</a></div>
+  <p class="sub after">Light. Always with you.</p>
 </section>
 
 <section class="values" id="values">
@@ -152,7 +135,7 @@ footer .wrap{font-size:12px;color:var(--ink-3);display:flex;justify-content:spac
   <div class="wrap">
     <p class="eyebrow">Same spirit. A brighter tomorrow.</p>
     <h2>A More Human World.</h2>
-    <svg class="mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="17" cy="7.5" rx="2.2" ry="2.8"/><ellipse cx="3.6" cy="12.5" rx="1.9" ry="2.4"/><ellipse cx="20.4" cy="12.5" rx="1.9" ry="2.4"/><path d="M12 11c3.6 0 6.6 3.4 6.6 6.4 0 2-1.4 3.3-3.2 3.3-1.3 0-2.1-.6-3.4-.6s-2.1.6-3.4.6c-1.8 0-3.2-1.3-3.2-3.3C5.4 14.4 8.4 11 12 11z"/></svg>
+    <svg class="mark" fill="currentColor"><use href="#paw"/></svg>
     <p>Ciba changes everything.</p>
   </div>
   <div class="peekwrap"><img class="peek" src="img/footer.jpg" alt="A Ciba peeking up from the bottom of the page" width="412" height="418"></div>
